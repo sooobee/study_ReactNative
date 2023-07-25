@@ -5,15 +5,17 @@ export default function App() {
   // enteredGoalText의 초기값을 '' 로 설정
   // setEnteredGoalText를 이용해 값 변경 가능
   const [enteredGoalText, setEnteredGoalText] = useState('');
-  
+  const [courseGoals, setCourseGoals] = useState([]);
+
   function goalInputHandler(enteredText) {
     // enteredText를 enteredGoalText로 설정(setEnteredGoalText의 매개변수)
     setEnteredGoalText(enteredText); 
   }
 
   function addGoalHandler() {
-    // enteredGoalText를 로그에 출력
-    console.log(enteredGoalText);
+    setCourseGoals(currentCourseGoals => [...currentCourseGoals, 
+      enteredGoalText, 
+    ]); // 입력된 값을 누적
   }
 
   return (
@@ -30,8 +32,9 @@ export default function App() {
           onPress={addGoalHandler}/> 
       </View>
 
-      <View style = {styles.goalsContainer}>
-        <Text>List of goals...</Text>
+      {/* corseGoal 내부를 돌면서 goal을 출력해줌, 여기서 고유한 key값 설정 필요*/}
+      <View style = {styles.goalsContainer}> 
+          {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)} 
       </View>
     </View>
   );  
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     padding: 50,
-    paddingHorizontal: 16za
+    paddingHorizontal: 16
   },
 
   // textInput과 button을 묶는 뷰
