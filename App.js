@@ -34,11 +34,15 @@ export default function App() {
 
       {/* corseGoal 내부를 돌면서 goal을 출력해줌, 여기서 고유한 key값 설정 필요*/}
       <View style = {styles.goalsContainer}> 
-          {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)} 
+          {courseGoals.map((goal) => (
+          <View style={styles.goalItem} key={goal}>
+            <Text style={styles.goalText}>{goal}</Text>
+          </View>
+            ))}
       </View>
     </View>
-  );  
-}
+    );  
+  }
 
 const styles = StyleSheet.create({
   // 전체 뷰
@@ -68,5 +72,14 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5
+  },
+  goalItem:{
+    margin: 8,
+    padding: 8,
+    borderRadius:6,
+    backgroundColor: "#5e0acc",
+  },
+  goalText:{
+    color: 'white'
   }
 }) 
