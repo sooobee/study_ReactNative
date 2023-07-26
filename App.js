@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput, ScrollView} from 'react-native';
 
 export default function App() {
   // enteredGoalText의 초기값을 '' 로 설정
@@ -33,12 +33,14 @@ export default function App() {
       </View>
 
       {/* corseGoal 내부를 돌면서 goal을 출력해줌, 여기서 고유한 key값 설정 필요*/}
-      <View style = {styles.goalsContainer}> 
+      <View style = {styles.goalsContainer}>
+        <ScrollView alwaysBounceVertical = {false}>
           {courseGoals.map((goal) => (
           <View style={styles.goalItem} key={goal}>
             <Text style={styles.goalText}>{goal}</Text>
           </View>
             ))}
+        </ScrollView> 
       </View>
     </View>
     );  
